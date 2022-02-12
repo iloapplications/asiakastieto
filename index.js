@@ -210,6 +210,18 @@ module.exports = function Asiakastieto (config) {
     return url.href;
   }
 
+  function buildDvvBasicDataUrl (params) {
+    const url = createUrlWithBasicParameters(params);
+
+    url.searchParams.append('reqmsg', 'CONSUMER');
+    url.searchParams.append('request', 'H');
+    url.searchParams.append('qtype', 34);
+    url.searchParams.append('level', '');
+    url.searchParams.append('purpose', 1);
+
+    return url.href;
+  }
+
   async function doRequestAndParseXML (url) {
     const rpOptions = { method: 'GET', uri: url };
     const response = await config.requestPromise(rpOptions);
@@ -240,6 +252,7 @@ module.exports = function Asiakastieto (config) {
     buildDecisionSupportServiceUrl,
     buildSimppeliUrl,
     buildNordicPersonInfoUrl,
+    buildDvvBasicDataUrl,
     doRequestAndParseXML
   };
 };
