@@ -1,0 +1,46 @@
+{
+  "ns2:response": {
+    "xmlns": "http://www.asiakastieto.fi/XMLSchema/AT_Common_2018.xsd",
+    "xmlns:ns2": "http://www.asiakastieto.fi/XMLSchema/AT_Consumer_2018.xsd",
+    "xmlns:ns3": "http://www.asiakastieto.fi/XMLSchema/SAT_consumer_loan.xsd",
+    "xmlns:ns4": "http://www.asiakastieto.fi/XMLSchema/SAT_common.xsd",
+    "ns2:consumerResponse": {
+      "ns2:responseHeader": {
+        "languageCode": "EN",
+        "timeStamp": {
+          "date": "2019-07-04",
+          "time": "16:38:52"
+        },
+        "responseStatus": "0",
+        "currencyCode": "EUR"
+      },
+      "ns2:personIdentification": {
+        "name": "Kuikelo Sorja Siviä",
+        "personId": "010100-1199",
+        "addressWhenDefaulted": {
+          "street": "Hoikkalantie 5",
+          "zip": "70150",
+          "town": "Kuopio"
+        }
+      },
+      "ns2:paymentDefaultData": {
+        "paymentDefaultCount": "1",
+        "paymentDefaultSummary": {
+          "classificationCode": "MHL2",
+          "classExplanation": "Payment default or payment defaults with slight significance",
+          "informationCode": "06",
+          "informationText": "The person has payment defaults."
+        },
+        "paymentDefaultRow": {
+          "sKey": "89999948",
+          "paymentDefaultCode": "YVK",
+          "paymentDefaultDate": "2000-03-03",
+          "amountOfPaymentDefault": "9493",
+          "creditor": "Sipuli Oy",
+          "ref": "6",
+          "debtPayedDate": "2000-09-17"
+        }
+      }
+    }
+  }
+}
