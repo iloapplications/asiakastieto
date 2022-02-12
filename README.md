@@ -26,50 +26,29 @@ This library is developed for our internal purposes, but you may find it useful 
 const Asiakastieto = require('asiakastieto');
 
 const asiakastietoConfig = {
-  client_id: 'YOUR SIGNICAT CLIENT ID',
-  secret: 'YOUR SIGNICAT SECRET',
-  isProd: process.env.NODE_ENV === 'production',
-  requestPromise: require('request-promise'),
-  privateJwk: 'YOUR SIGNICAT PRIVATE JWK',
-  FTN: true
+  userid: process.env.USERID,
+  passwd: process.env.PASSWD,
+  shaKey: process.env.SHA_KEY,
+  requestPromise: require('request-promise')
 };
 
-// get authorization url
-const signicatParams = {
-  redirect_uri: signicatReturnUrl, // Redirection URI to which the response will be sent.
-  state: state, // Required. Opaque value used to maintain state between the request and the callback.
-  response_type: 'code', // Required. When using the Authorization Code Flow, this value is “code”.
-  scope: 'openid profile signicat.national_id ftn', // Required. The OpenID scope value specifies the behavior.
-  nonce: nonce, // Optional. String value used to associate a Client session with an ID Token,
-  ui_locales: 'en', // fi, sv
-  acr_values: 'urn:signicat:oidc:portal:ftn-auth' // Optional. Requested Authentication Context Class Reference values
+// do customer default check
+const asiakastieto = new Asiakastieto(config);
+const params = {
+  enduser: 'ccccc',
+  idnumber: process.env.ID_NUMBER,
+  lang: 'EN',
+  sequence: 25
 };
-const authorizationUrl = await new Signicat(signicatConfig).getAuthorizationUrl(signicatParams);
+const url = asiakastieto.buildDefaultCheckUrl(params);
+const data = await asiakastieto.doRequestAndParseXML(url);
 
-
-// get access token
-const signicatParams = {
-  code: code,
-  grant_type: 'authorization_code',
-  redirect_uri: redirect_uri
-};
-const accessToken = await new Signicat(signicatConfig).postAccessToken(signicatParams);
-
-// get user info
-const signicatParams = { access_token };
-
-const userInfo = await new Signicat(signicatConfig).getUserInfo(signicatParams);
-const ssn = userInfo['signicat.national_id'] || userInfo['ssn'];
-const firstName = userInfo['ftn.firstNames'] || userInfo['given_name'] || userInfo['ftn.firstBirthName'];
-const familyName = userInfo['ftn.familyBirthName'] || userInfo['family_name'];
-const fullName = userInfo['name'];
-const dob = userInfo['birthdate'];
 ```
 
 
 ## More documentation
 
-* [Signicat Developer Portal](https://developer.signicat.com/)
+* [Asiakastieto](https://www.asiakastieto.fi/)
 * [ILOapps.es](https://iloapps.es/)
 
 
