@@ -216,7 +216,7 @@ module.exports = function Asiakastieto (config) {
     url.searchParams.append('reqmsg', 'CONSUMER');
     url.searchParams.append('request', 'H');
     url.searchParams.append('qtype', 34);
-    url.searchParams.append('level', '');
+    // url.searchParams.append('level', '');
     url.searchParams.append('purpose', 1);
 
     return url.href;

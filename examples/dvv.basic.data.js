@@ -20,11 +20,10 @@ run().catch(error => {
 async function run () {
   const asiakastieto = new Asiakastieto(config);
   const params = {
-    enduser: 'ccccc',
-    idnumber: '020770-0952', // Only for testing (MHL4)
+    enduser: 'testtesttest',
+    idnumber: '010100-123D',
     lang: 'EN',
     sequence: 27
-    // model: 'SIMP1'
   };
   const url = asiakastieto.buildDvvBasicDataUrl(params);
   console.log(url);
