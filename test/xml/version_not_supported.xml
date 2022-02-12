@@ -1,0 +1,17 @@
+<ns2:response xmlns="http://www.asiakastieto.fi/XMLSchema/AT_Common_2018.xsd" xmlns:ns2="http://www.asiakastieto.fi/XMLSchema/AT_Consumer_2018.xsd" xmlns:ns3="http://www.asiakastieto.fi/XMLSchema/SAT_consumer_loan.xsd" xmlns:ns4="http://www.asiakastieto.fi/XMLSchema/SAT_common.xsd">
+<ns2:consumerResponse>
+<ns2:responseHeader>
+<languageCode>EN</languageCode>
+<timeStamp>
+<date>2019-07-02</date>
+<time>17:15:59</time>
+</timeStamp>
+<responseStatus>1</responseStatus>
+<currencyCode>EUR</currencyCode>
+</ns2:responseHeader>
+<ns2:errorMessage>
+<errorCode>103</errorCode>
+<errorText>AUTHENTICATION FAILED</errorText>
+</ns2:errorMessage>
+</ns2:consumerResponse>
+</ns2:response>

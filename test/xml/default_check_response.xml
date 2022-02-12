@@ -1,0 +1,42 @@
+<ns2:response xmlns="http://www.asiakastieto.fi/XMLSchema/AT_Common_2018.xsd" xmlns:ns2="http://www.asiakastieto.fi/XMLSchema/AT_Consumer_2018.xsd" xmlns:ns3="http://www.asiakastieto.fi/XMLSchema/SAT_consumer_loan.xsd" xmlns:ns4="http://www.asiakastieto.fi/XMLSchema/SAT_common.xsd">
+<ns2:consumerResponse>
+<ns2:responseHeader>
+<languageCode>EN</languageCode>
+<timeStamp>
+<date>2019-07-04</date>
+<time>17:00:54</time>
+</timeStamp>
+<responseStatus>0</responseStatus>
+<currencyCode>EUR</currencyCode>
+</ns2:responseHeader>
+<ns2:personIdentification>
+<name>Kuikelo Sorja Siviä</name>
+<personId>010100-1199</personId>
+<addressWhenDefaulted>
+<street>Hoikkalantie 5</street>
+<zip>70150</zip>
+<town>Kuopio</town>
+</addressWhenDefaulted>
+</ns2:personIdentification>
+<ns2:paymentDefaultData>
+<paymentDefaultCount>1</paymentDefaultCount>
+<paymentDefaultSummary>
+<classificationCode>MHL2</classificationCode>
+<classExplanation>
+Payment default or payment defaults with slight significance
+</classExplanation>
+<informationCode>06</informationCode>
+<informationText>The person has payment defaults.</informationText>
+</paymentDefaultSummary>
+<paymentDefaultRow>
+<sKey>89999948</sKey>
+<paymentDefaultCode>YVK</paymentDefaultCode>
+<paymentDefaultDate>2000-03-03</paymentDefaultDate>
+<amountOfPaymentDefault>9493</amountOfPaymentDefault>
+<creditor>Sipuli Oy</creditor>
+<ref>6</ref>
+<debtPayedDate>2000-09-17</debtPayedDate>
+</paymentDefaultRow>
+</ns2:paymentDefaultData>
+</ns2:consumerResponse>
+</ns2:response>

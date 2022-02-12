@@ -1,0 +1,17 @@
+<response xmlns:cmn="http://www.asiakastieto.fi/XMLSchema/Common_4.04.xsd" xmlns:pr="http://www.asiakastieto.fi/XMLSchema/PopulationInformation_4.04.xsd" xmlns="http://www.asiakastieto.fi/XMLSchema/Company_4_05.xsd">
+<companyResponse>
+<responseHeader>
+<cmn:languageCode>EN</cmn:languageCode>
+<cmn:timeStamp>
+<cmn:date>2019-07-02</cmn:date>
+<cmn:time>17:27:28</cmn:time>
+</cmn:timeStamp>
+<cmn:responseStatus>1</cmn:responseStatus>
+<cmn:currencyCode>EUR</cmn:currencyCode>
+</responseHeader>
+<errorMessage>
+<cmn:errorCode>103</cmn:errorCode>
+<cmn:errorText>error in the execution of the service</cmn:errorText>
+</errorMessage>
+</companyResponse>
+</response>
