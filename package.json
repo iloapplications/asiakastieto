@@ -9,7 +9,10 @@
     "release": "npx release-it && npx auto-changelog && git add CHANGELOG.md && git commit -m 'Update CHANGELOG' && git push"
   },
   "author": "ILO Applications S.L.",
-  "url": "https://github.com/iloapplications/asiakastieto",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/iloapplications/asiakastieto"
+  },
   "license": "Apache-2.0",
   "dependencies": {
     "mockdate": "2.0.3",
