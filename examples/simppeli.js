@@ -8,8 +8,7 @@ assert.ok(process.env.SHA_KEY, 'Please specify a SHA_KEY env var');
 const config = {
   userid: process.env.USERID,
   passwd: process.env.PASSWD,
-  shaKey: process.env.SHA_KEY,
-  requestPromise: require('request-promise')
+  shaKey: process.env.SHA_KEY
 };
 
 run().catch(error => {

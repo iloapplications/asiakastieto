@@ -9,8 +9,7 @@ assert.ok(process.env.ID_NUMBER, 'Please specify a ID_NUMBER env var');
 const config = {
   userid: process.env.USERID,
   passwd: process.env.PASSWD,
-  shaKey: process.env.SHA_KEY,
-  requestPromise: require('request-promise')
+  shaKey: process.env.SHA_KEY
 };
 
 run().catch(error => {
