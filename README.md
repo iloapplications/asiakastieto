@@ -28,8 +28,7 @@ const Asiakastieto = require('asiakastieto');
 const asiakastietoConfig = {
   userid: process.env.USERID,
   passwd: process.env.PASSWD,
-  shaKey: process.env.SHA_KEY,
-  requestPromise: require('request-promise')
+  shaKey: process.env.SHA_KEY
 };
 
 // do customer default check
