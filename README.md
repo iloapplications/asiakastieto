@@ -32,7 +32,7 @@ const asiakastietoConfig = {
 };
 
 // do customer default check
-const asiakastieto = new Asiakastieto(config);
+const asiakastieto = new Asiakastieto(asiakastietoConfig);
 const params = {
   enduser: 'ccccc',
   idnumber: process.env.ID_NUMBER,
