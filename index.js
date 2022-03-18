@@ -3,14 +3,13 @@
 const crypto = require('crypto');
 const parser = require('xml2js');
 const util = require('util');
+const axios = require('axios');
 
 const stagUrl = 'https://demo.asiakastieto.fi/services/consumer5/REST';
 const prodUrl = 'https://www.asiakastieto.fi/services/consumer5/REST';
+const httpOptions = { timeout: 10000 };
 
 function validateConfig (config) {
-  if (!config.requestPromise) {
-    throw new Error('Configuration: requestPromise is mandatory');
-  }
   if (config.isProd && typeof (config.isProd) !== 'boolean') {
     throw new Error('Configuration: isProd must be a boolean');
   }
@@ -223,8 +222,8 @@ module.exports = function Asiakastieto (config) {
   }
 
   async function doRequestAndParseXML (url) {
-    const rpOptions = { method: 'GET', uri: url };
-    const response = await config.requestPromise(rpOptions);
+    const options = { ... httpOptions };
+    const { data: response } = await axios.get(url, options);
 
     const parserOptions = {
       tagNameProcessors: [name => name.replace(/ns[2,3,4]:/gi, '')],

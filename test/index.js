@@ -2,6 +2,7 @@
 
 const should = require('should');
 const chai = require('chai');
+const nock = require('nock');
 const validator = require('validator');
 const chaiAsPromised = require('chai-as-promised');
 const expect = chai.expect;
@@ -19,7 +20,9 @@ const urlOptions = {
   require_tld: false // for localhost
 };
 
-const apiUrl = 'https://demo.asiakastieto.fi/services/consumer5/REST';
+const apiUrl = 'https://demo.asiakastieto.fi';
+const apiPath = '/services/consumer5/REST';
+
 const stringRange = (start, end, zeros) => Array.from(Array(end - start + 1), (_, i) => {
   return (start + i).toString().padStart(zeros, '0');
 });
@@ -36,8 +39,7 @@ beforeEach(() => {
     userid: 'testusername',
     passwd: 'pwd123',
     shaKey: 'ABXEYYUEOVJCMEUEWUJDJ',
-    isProd: false,
-    requestPromise: function () {}
+    isProd: false
   };
   basicParams = {
     enduser: 'cccccc',
@@ -76,7 +78,7 @@ function validateTimestamp (timestamp, sequence) {
 }
 
 function validateBasicUrlParams (urlObject, config, params) {
-  expect(urlObject.protocol + '//' + urlObject.host + urlObject.pathname).to.equal(apiUrl);
+  expect(urlObject.protocol + '//' + urlObject.host + urlObject.pathname).to.equal(apiUrl + apiPath);
   expect(urlObject.searchParams.get('passwd')).to.equal(config.passwd);
   expect(urlObject.searchParams.get('userid')).to.equal(config.userid);
   expect(urlObject.searchParams.get('version')).to.equal('2018');
@@ -91,10 +93,6 @@ function validateBasicUrlParams (urlObject, config, params) {
 
 describe('Asiakastieto', function () {
   describe('Constructor', () => {
-    it('Should return an error if requestPromise not configured', () => {
-      delete config.requestPromise;
-      expect(() => new Asiakastieto(config)).to.throw(Error, /requestPromise/);
-    });
     it('Should return an error when userid is missing', () => {
       delete config.userid;
       expect(() => new Asiakastieto(config)).to.throw(Error, /userid/);
@@ -372,23 +370,26 @@ describe('Asiakastieto', function () {
 
   describe('Do GET Request', () => {
     it('Should thrown an error if errorMessage(errorCode, errorText) is found in XML response', () => {
-      sinon.stub(config, 'requestPromise').resolves(authenticationFailureXml);
-      expect(new Asiakastieto(config).doRequestAndParseXML(apiUrl)).to.be.rejectedWith(Error);
+      nock(apiUrl).get(apiPath).reply(200, authenticationFailureXml);
+      expect(new Asiakastieto(config).doRequestAndParseXML(apiUrl + apiPath)).to.be.rejectedWith(Error);
     });
 
     it('Should thrown an error if XML error found', () => {
-      sinon.stub(config, 'requestPromise').resolves(versionFailureXml);
-      expect(new Asiakastieto(config).doRequestAndParseXML(apiUrl)).to.be.rejectedWith(Error);
+      //sinon.stub(config, 'requestPromise').resolves(versionFailureXml);
+      nock(apiUrl).get(apiPath).reply(200, versionFailureXml);
+      expect(new Asiakastieto(config).doRequestAndParseXML(apiUrl + apiPath)).to.be.rejectedWith(Error);
     });
 
     it('Should get and parse Generic error XML response to JSON', () => {
-      sinon.stub(config, 'requestPromise').resolves(genericErrorXml);
-      expect(new Asiakastieto(config).doRequestAndParseXML(apiUrl)).to.be.rejectedWith(Error);
+      nock(apiUrl).get(apiPath).reply(200, genericErrorXml);
+
+      expect(new Asiakastieto(config).doRequestAndParseXML(apiUrl + apiPath)).to.be.rejectedWith(Error);
     });
 
     it('Should get and parse consumer default check response from XML to JSON', async () => {
-      sinon.stub(config, 'requestPromise').resolves(defaultCheckResponseXml);
-      const data = await new Asiakastieto(config).doRequestAndParseXML(apiUrl);
+      nock(apiUrl).get(apiPath).reply(200, defaultCheckResponseXml);
+
+      const data = await new Asiakastieto(config).doRequestAndParseXML(apiUrl + apiPath);
       expect(validator.isJSON(JSON.stringify(data))).to.equal(true);
     });
   });
