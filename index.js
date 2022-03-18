@@ -1,7 +1,7 @@
 'use strict';
 
 const crypto = require('crypto');
-const parser = require('xml2js');
+// const parser = require('xml2js');
 const util = require('util');
 const axios = require('axios');
 
@@ -224,14 +224,16 @@ module.exports = function Asiakastieto (config) {
   async function doRequestAndParseXML (url) {
     const options = { ... httpOptions };
     const { data: response } = await axios.get(url, options);
+    
+    // const parserOptions = {
+    //   tagNameProcessors: [name => name.replace(/ns[2,3,4]:/gi, '')],
+    //   explicitArray: false
+    // };
 
-    const parserOptions = {
-      tagNameProcessors: [name => name.replace(/ns[2,3,4]:/gi, '')],
-      explicitArray: false
-    };
-
-    const data = await util.promisify(parser.parseString.bind(parser))(response, parserOptions);
-    const consumerResponse = data && data.response && data.response.consumerResponse;
+    //const data = await util.promisify(parser.parseString.bind(parser))(response, parserOptions);
+    //const consumerResponse = data && data.response && data.response.consumerResponse;
+    
+    const { consumerResponse } = response;
     if (!consumerResponse) {
       throw new Error('Unable to parse XML response');
     }
