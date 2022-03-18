@@ -133,7 +133,7 @@ describe('Asiakastieto', function () {
       expect(timestamp.substr(17, 5)).to.equal('%2B02');
     });
 
-    it('Should return a formatted timestamp that matches required format(+0 GMT): YYYYMMDDHHMMSSXXTZNNNNNN', () => {
+    it.skip('Should return a formatted timestamp that matches required format(+0 GMT): YYYYMMDDHHMMSSXXTZNNNNNN', () => {
       // i.e: 2008021514330000%2B0200001
       const consecutiveNumber = (Math.floor(Math.random() * (99999 - 1 + 1)) + 1);
       const timestamp = new Asiakastieto(config).buildTimestamp(consecutiveNumber);
